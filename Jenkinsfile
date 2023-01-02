@@ -15,5 +15,14 @@ pipeline {
         }
       }
     }
+    stage('Deploy') {
+      when {
+        beforeAgent true
+        branch 'main'
+      }
+      steps {
+        echo "TODO - deploy"
+      } 
+    }
   }
 }
