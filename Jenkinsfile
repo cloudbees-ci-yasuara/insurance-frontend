@@ -1,5 +1,8 @@
 pipeline {
   agent none
+  environment {
+    FAVORITE_COLOR = 'RED'
+  }
   stages {
     stage('Pull Request') {
       when {
@@ -9,20 +12,16 @@ pipeline {
       stages {
         stage('Build and Push Container Image') {
           steps {
+            echo "FAVORITE_COLOR is $FAVORITE_COLOR"
             echo "TODO - Build and Push Container Image"
           }
         }
         stage('Test') {
-          agent {
-            kubernetes {
-              yamlFile 'nodejs-pod.yaml'
-            }
+          environment {
+            FAVORITE_COLOR = 'BLUE'
           }
           steps {
-            container('nodejs') {
-              echo 'Hello World!'   
-              sh 'node --version'
-            }
+            echo "TODO - test $FAVORITE_COLOR"
           }
         }
       }
