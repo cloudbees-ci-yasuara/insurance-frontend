@@ -1,5 +1,8 @@
 pipeline {
   agent none
+  environment {
+    FAVORITE_COLOR = 'RED'
+  }
   stages {
     stage('Pull Request') {
       when {
@@ -9,20 +12,24 @@ pipeline {
       stages {
         stage('Build and Push Container Image') {
           steps {
+            echo "FAVORITE_COLOR is $FAVORITE_COLOR"
             echo "TODO - Build and Push Container Image"
           }
         }
         stage('Test') {
-          agent {
-            kubernetes {
-              yamlFile 'nodejs-pod.yaml'
-            }
+          agent any
+          options {
+            timeout(time: 10, unit: 'SECONDS') 
+          }
+          environment {
+            FAVORITE_COLOR = 'BLUE'
+            SERVICE_CREDS = credentials('example-service-username-password')
+          }          
+          input {
+            message "Should we continue with tests?"
           }
           steps {
-            container('nodejs') {
-              echo 'Hello World!'   
-              sh 'node --version'
-            }
+            sh 'echo TODO - test $FAVORITE_COLOR with SERVICE_CREDS: username=$SERVICE_CREDS_USR password=$SERVICE_CREDS_PSW'
           }
         }
       }
