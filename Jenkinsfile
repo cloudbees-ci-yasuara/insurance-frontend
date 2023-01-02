@@ -18,6 +18,9 @@ pipeline {
         }
         stage('Test') {
           agent any
+          options {
+            timeout(time: 10, unit: 'SECONDS') 
+          }
           environment {
             FAVORITE_COLOR = 'BLUE'
             SERVICE_CREDS = credentials('example-service-username-password')
