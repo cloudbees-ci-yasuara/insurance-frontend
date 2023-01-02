@@ -24,7 +24,7 @@ pipeline {
           environment {
             FAVORITE_COLOR = 'BLUE'
             SERVICE_CREDS = credentials('example-service-username-password')
-          }
+          }          
           input {
             message "Should we continue with tests?"
           }
