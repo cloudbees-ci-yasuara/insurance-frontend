@@ -1,0 +1,11 @@
+apiVersion: environment.cloudbees.com/v1alpha1
+kind: GitRepository
+metadata:
+  name: cloudbees-ci-yasuara-insurance-frontend                             
+  namespace: previews
+spec:
+  url: https://github.com/cloudbees-ci-yasuara/insurance-frontend.git
+  apiTokenSecretRef:
+    name: beedemo-dev-github-token
+  autoUpdateContexts:                           
+  - default

@@ -18,14 +18,14 @@ ingress:
   enabled: true
   className: nginx
   hosts:
-    - host: REPLACE_GITHUB_ORG.staging.workshop.cb-sa.io
+    - host: cloudbees-ci-yasuara.staging.workshop.cb-sa.io
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls:
     - secretName: staging-tls
       hosts:
-        - REPLACE_GITHUB_ORG.staging.workshop.cb-sa.io
+        - cloudbees-ci-yasuara.staging.workshop.cb-sa.io
 
 backendUrl: https://example.com
 fmToken: abcdefg123456789
